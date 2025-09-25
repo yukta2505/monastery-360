@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monastery 360 - Experience Spiritual Heritage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        saffron: '#FF9933',
+                        monastery: '#8B4513',
+                        golden: '#FFD700',
+                        warmRed: '#CD853F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(139, 69, 19, 0.7), rgba(205, 133, 63, 0.7)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23D2691E" width="1200" height="600"/><path fill="%23CD853F" d="M0 400h1200v200H0z"/><rect fill="%238B4513" x="400" y="150" width="400" height="300" rx="20"/><rect fill="%23A0522D" x="420" y="170" width="360" height="260" rx="10"/><circle fill="%23FFD700" cx="600" cy="100" r="40"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 153, 51, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(255, 153, 51, 0.8); }
+        }
+    </style>
+</head>
+<body class="bg-stone-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-monastery">🏛️ Monastery 360</div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="text-monastery hover:text-saffron px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="#tours" class="text-monastery hover:text-saffron px-3 py-2 rounded-md text-sm font-medium transition-colors">Virtual Tours</a>
+                        <a href="#archives" class="text-monastery hover:text-saffron px-3 py-2 rounded-md text-sm font-medium transition-colors">Archives</a>
+                        <a href="#events" class="text-monastery hover:text-saffron px-3 py-2 rounded-md text-sm font-medium transition-colors">Events</a>
+                        <a href="#support" class="text-monastery hover:text-saffron px-3 py-2 rounded-md text-sm font-medium transition-colors">Support</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <select class="bg-monastery text-white px-4 py-2 rounded-lg text-sm border-none outline-none cursor-pointer">
+                        <option>🇺🇸 English</option>
+                        <option>🇮🇳 हिंदी</option>
+                        <option>🇳🇵 नेपाली</option>
+                        <option>🏴󠁴󠁢󠁴󠁿 བོད་ཡིག</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white">
+        <div class="text-center max-w-4xl mx-auto px-4 fade-in">
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 text-golden">Monastery 360</h1>
+            <p class="text-2xl md:text-3xl mb-8 text-stone-100">Experience Spiritual Heritage in 360°</p>
+            <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-stone-200">Immerse yourself in ancient wisdom through cutting-edge virtual reality. Explore sacred spaces, discover timeless teachings, and connect with spiritual heritage like never before.</p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <button onclick="scrollToSection('tours')" class="bg-saffron hover:bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all pulse-glow">
+                    🎯 Start Virtual Tour
+                </button>
+                <button onclick="scrollToSection('archives')" class="bg-transparent border-2 border-golden text-golden hover:bg-golden hover:text-monastery px-8 py-4 rounded-full text-lg font-semibold transition-all">
+                    📚 Explore Archives
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Virtual Tour Preview -->
+    <section id="tours" class="py-20 bg-gradient-to-b from-stone-100 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-monastery mb-6">Virtual Tour Experience</h2>
+                <p class="text-xl text-stone-600 max-w-3xl mx-auto">Step inside sacred halls and explore ancient architecture through immersive 360° experiences</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden card-hover">
+                <div id="tourViewer" class="aspect-video bg-gradient-to-br from-monastery to-warmRed flex items-center justify-center relative">
+                    <!-- Tour Launch Screen -->
+                    <div id="tourLaunchScreen" class="text-center text-white">
+                        <div class="text-6xl mb-4">🏛️</div>
+                        <h3 class="text-2xl font-bold mb-2">360° Monastery Tour</h3>
+                        <p class="text-stone-200 mb-6">Interactive panoramic experience</p>
+                        <button onclick="launchTour()" class="bg-saffron hover:bg-orange-600 px-6 py-3 rounded-full font-semibold transition-colors">
+                            ▶️ Launch Tour
+                        </button>
+                    </div>
+                    
+                    <!-- Active Tour Interface -->
+                    <div id="activeTour" class="hidden w-full h-full relative">
+                        <!-- 360° Panoramic View Simulation -->
+                        <div class="w-full h-full bg-gradient-to-r from-amber-100 via-orange-200 to-red-200 relative overflow-hidden">
+                            <!-- Monastery Interior Simulation -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-8xl mb-4 animate-pulse">🏛️</div>
+                                    <p class="text-monastery font-semibold">360° View Active</p>
+                                    <p class="text-stone-600 text-sm">Drag to look around</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Interactive Hotspots -->
+                            <div class="absolute top-1/4 left-1/4 hotspot" data-info="altar">
+                                <div class="w-4 h-4 bg-saffron rounded-full animate-ping"></div>
+                                <div class="w-4 h-4 bg-saffron rounded-full absolute top-0 left-0"></div>
+                            </div>
+                            
+                            <div class="absolute top-1/2 right-1/3 hotspot" data-info="statue">
+                                <div class="w-4 h-4 bg-golden rounded-full animate-ping"></div>
+                                <div class="w-4 h-4 bg-golden rounded-full absolute top-0 left-0"></div>
+                            </div>
+                            
+                            <div class="absolute bottom-1/3 left-1/2 hotspot" data-info="murals">
+                                <div class="w-4 h-4 bg-warmRed rounded-full animate-ping"></div>
+                                <div class="w-4 h-4 bg-warmRed rounded-full absolute top-0 left-0"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tour Controls -->
+                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-6 py-3 rounded-full flex items-center gap-4">
+                            <button onclick="exitTour()" class="hover:text-saffron transition-colors">❌ Exit</button>
+                            <button class="hover:text-saffron transition-colors">🔊 Audio</button>
+                            <button class="hover:text-saffron transition-colors">ℹ️ Info</button>
+                            <button class="hover:text-saffron transition-colors">📱 VR Mode</button>
+                        </div>
+                        
+                        <!-- Info Panel -->
+                        <div id="hotspotInfo" class="absolute top-4 left-4 bg-white bg-opacity-95 p-4 rounded-lg shadow-lg max-w-xs hidden">
+                            <h4 id="hotspotTitle" class="font-bold text-monastery mb-2"></h4>
+                            <p id="hotspotDescription" class="text-stone-600 text-sm"></p>
+                            <button onclick="closeHotspotInfo()" class="mt-2 text-saffron hover:text-orange-600 text-sm">Close</button>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute top-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+                        360° VR Ready
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">🎯</div>
+                            <h4 class="font-semibold text-monastery mb-2">Interactive Hotspots</h4>
+                            <p class="text-stone-600 text-sm">Click to learn about artifacts and architecture</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">🎧</div>
+                            <h4 class="font-semibold text-monastery mb-2">Audio Guides</h4>
+                            <p class="text-stone-600 text-sm">Multilingual narration by monks</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">📱</div>
+                            <h4 class="font-semibold text-monastery mb-2">Mobile Friendly</h4>
+                            <p class="text-stone-600 text-sm">Works on all devices and VR headsets</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map -->
+    <section class="py-20 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-monastery mb-6">Explore Sikkim's Sacred Heritage</h2>
+                <p class="text-xl text-stone-600">Discover the ancient monasteries of the Himalayan kingdom</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="aspect-video bg-gradient-to-br from-green-100 to-blue-100 relative overflow-hidden" id="worldMap">
+                    <!-- World map background -->
+                    <svg viewBox="0 0 1000 500" class="w-full h-full">
+                        <!-- Simplified world map -->
+                        <rect fill="#87CEEB" width="1000" height="500"/>
+                        <!-- Continents -->
+                        <path fill="#90EE90" d="M100 150 L300 120 L350 200 L280 280 L150 250 Z"/> <!-- Europe -->
+                        <path fill="#90EE90" d="M350 100 L600 80 L650 300 L400 320 Z"/> <!-- Asia -->
+                        <path fill="#90EE90" d="M50 200 L200 180 L250 350 L100 380 Z"/> <!-- Africa -->
+                        <path fill="#90EE90" d="M700 150 L900 130 L950 300 L750 320 Z"/> <!-- North America -->
+                        <path fill="#90EE90" d="M720 320 L880 300 L900 450 L750 470 Z"/> <!-- South America -->
+                    </svg>
+                    
+                    <!-- Sikkim monastery markers positioned on the map -->
+                    <div class="absolute top-[35%] left-[52%] monastery-marker" data-monastery="rumtek">
+                        <div class="w-6 h-6 bg-saffron rounded-full animate-pulse cursor-pointer border-2 border-white shadow-lg hover:scale-125 transition-transform"></div>
+                        <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-monastery text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity">Rumtek Monastery</div>
+                    </div>
+                    
+                    <div class="absolute top-[45%] left-[50%] monastery-marker" data-monastery="pemayangtse">
+                        <div class="w-6 h-6 bg-saffron rounded-full animate-pulse cursor-pointer border-2 border-white shadow-lg hover:scale-125 transition-transform"></div>
+                        <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-monastery text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity">Pemayangtse</div>
+                    </div>
+                    
+                    <div class="absolute top-[50%] left-[49%] monastery-marker" data-monastery="tashiding">
+                        <div class="w-6 h-6 bg-saffron rounded-full animate-pulse cursor-pointer border-2 border-white shadow-lg hover:scale-125 transition-transform"></div>
+                        <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-monastery text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity">Tashiding</div>
+                    </div>
+                    
+                    <div class="absolute top-[38%] left-[52.5%] monastery-marker" data-monastery="enchey">
+                        <div class="w-6 h-6 bg-saffron rounded-full animate-pulse cursor-pointer border-2 border-white shadow-lg hover:scale-125 transition-transform"></div>
+                        <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-monastery text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity">Enchey Monastery</div>
+                    </div>
+                    
+                    <div class="absolute top-[48%] left-[48%] monastery-marker" data-monastery="dubdi">
+                        <div class="w-6 h-6 bg-saffron rounded-full animate-pulse cursor-pointer border-2 border-white shadow-lg hover:scale-125 transition-transform"></div>
+                        <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-monastery text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity">Dubdi Monastery</div>
+                    </div>
+                    
+                    <div class="absolute top-[30%] left-[53%] monastery-marker" data-monastery="phensang">
+                        <div class="w-6 h-6 bg-saffron rounded-full animate-pulse cursor-pointer border-2 border-white shadow-lg hover:scale-125 transition-transform"></div>
+                        <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-monastery text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity">Phensang Monastery</div>
+                    </div>
+                </div>
+                
+                <!-- Monastery Details Panel -->
+                <div id="monasteryDetails" class="p-6 bg-white border-t hidden">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2">
+                            <h3 id="monasteryName" class="text-2xl font-bold text-monastery mb-2"></h3>
+                            <p id="monasteryLocation" class="text-saffron font-semibold mb-4"></p>
+                            <p id="monasteryDescription" class="text-stone-600 mb-4"></p>
+                            <div class="flex gap-4">
+                                <button onclick="startVirtualTour()" class="bg-saffron hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors">
+                                    🎯 Virtual Tour
+                                </button>
+                                <button class="bg-monastery hover:bg-stone-800 text-white px-4 py-2 rounded-lg transition-colors">
+                                    📚 Learn More
+                                </button>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div id="monasteryIcon" class="text-6xl mb-2"></div>
+                            <div id="monasteryFounded" class="text-sm text-stone-600"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6 bg-monastery text-white">
+                    <div class="grid md:grid-cols-4 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-golden">6</div>
+                            <div class="text-sm">Sikkim Monasteries</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-golden">4</div>
+                            <div class="text-sm">Districts Covered</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-golden">2</div>
+                            <div class="text-sm">Buddhist Traditions</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-golden">320+</div>
+                            <div class="text-sm">Years of Heritage</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Information Hub -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-monastery mb-6">Cultural Heritage</h2>
+                <p class="text-xl text-stone-600">Discover the rich history and architecture of monastic traditions</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-stone-50 to-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-monastery to-warmRed flex items-center justify-center">
+                        <div class="text-6xl text-white">🏛️</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-monastery mb-3">Sacred Architecture</h3>
+                        <p class="text-stone-600 mb-4">Explore the intricate designs and spiritual symbolism embedded in monastic architecture across different cultures and time periods.</p>
+                        <button class="text-saffron hover:text-orange-600 font-semibold transition-colors">Learn More →</button>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-stone-50 to-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-saffron to-golden flex items-center justify-center">
+                        <div class="text-6xl text-white">📿</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-monastery mb-3">Spiritual Practices</h3>
+                        <p class="text-stone-600 mb-4">Understand the daily rituals, meditation practices, and philosophical teachings that form the heart of monastic life.</p>
+                        <button class="text-saffron hover:text-orange-600 font-semibold transition-colors">Learn More →</button>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-stone-50 to-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-warmRed to-monastery flex items-center justify-center">
+                        <div class="text-6xl text-white">🎨</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-monastery mb-3">Art & Manuscripts</h3>
+                        <p class="text-stone-600 mb-4">Discover ancient texts, murals, and artistic treasures that preserve centuries of wisdom and cultural heritage.</p>
+                        <button class="text-saffron hover:text-orange-600 font-semibold transition-colors">Learn More →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Calendar -->
+    <section id="events" class="py-20 bg-gradient-to-br from-stone-100 to-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-monastery mb-6">Upcoming Events</h2>
+                <p class="text-xl text-stone-600">Join virtual festivals and ceremonies</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="bg-monastery text-white p-6">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-2xl font-bold">Festival Calendar</h3>
+                        <div class="flex gap-2">
+                            <button class="bg-saffron hover:bg-orange-600 px-4 py-2 rounded-lg transition-colors">← Prev</button>
+                            <button class="bg-saffron hover:bg-orange-600 px-4 py-2 rounded-lg transition-colors">Next →</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-7 gap-2 mb-6">
+                        <div class="text-center font-semibold text-monastery p-2">Sun</div>
+                        <div class="text-center font-semibold text-monastery p-2">Mon</div>
+                        <div class="text-center font-semibold text-monastery p-2">Tue</div>
+                        <div class="text-center font-semibold text-monastery p-2">Wed</div>
+                        <div class="text-center font-semibold text-monastery p-2">Thu</div>
+                        <div class="text-center font-semibold text-monastery p-2">Fri</div>
+                        <div class="text-center font-semibold text-monastery p-2">Sat</div>
+                        
+                        <!-- Calendar days -->
+                        <div class="text-center p-2 text-stone-400">28</div>
+                        <div class="text-center p-2 text-stone-400">29</div>
+                        <div class="text-center p-2 text-stone-400">30</div>
+                        <div class="text-center p-2">1</div>
+                        <div class="text-center p-2">2</div>
+                        <div class="text-center p-2">3</div>
+                        <div class="text-center p-2">4</div>
+                        
+                        <div class="text-center p-2">5</div>
+                        <div class="text-center p-2">6</div>
+                        <div class="text-center p-2">7</div>
+                        <div class="text-center p-2">8</div>
+                        <div class="text-center p-2">9</div>
+                        <div class="text-center p-2">10</div>
+                        <div class="text-center p-2">11</div>
+                        
+                        <div class="text-center p-2">12</div>
+                        <div class="text-center p-2">13</div>
+                        <div class="text-center p-2">14</div>
+                        <div class="text-center p-2 bg-saffron text-white rounded-lg cursor-pointer">15</div>
+                        <div class="text-center p-2">16</div>
+                        <div class="text-center p-2">17</div>
+                        <div class="text-center p-2">18</div>
+                        
+                        <div class="text-center p-2">19</div>
+                        <div class="text-center p-2">20</div>
+                        <div class="text-center p-2">21</div>
+                        <div class="text-center p-2 bg-golden text-monastery rounded-lg cursor-pointer">22</div>
+                        <div class="text-center p-2">23</div>
+                        <div class="text-center p-2">24</div>
+                        <div class="text-center p-2">25</div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 bg-saffron bg-opacity-10 rounded-lg">
+                            <div class="text-2xl">🎭</div>
+                            <div>
+                                <h4 class="font-semibold text-monastery">Losar Festival - Virtual Celebration</h4>
+                                <p class="text-stone-600 text-sm">March 15, 2024 • 10:00 AM GMT</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 bg-golden bg-opacity-10 rounded-lg">
+                            <div class="text-2xl">🕯️</div>
+                            <div>
+                                <h4 class="font-semibold text-monastery">Vesak Day Meditation</h4>
+                                <p class="text-stone-600 text-sm">March 22, 2024 • 6:00 PM GMT</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Archives Section -->
+    <section id="archives" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-monastery mb-6">Digital Archives</h2>
+                <p class="text-xl text-stone-600">Explore ancient manuscripts and sacred art</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-stone-50 to-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-40 bg-gradient-to-br from-monastery to-warmRed flex items-center justify-center">
+                        <div class="text-4xl text-white">📜</div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-monastery mb-2">Ancient Manuscript</h4>
+                        <p class="text-stone-600 text-sm">Tibetan Buddhist text, 12th century</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-stone-50 to-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-40 bg-gradient-to-br from-saffron to-golden flex items-center justify-center">
+                        <div class="text-4xl text-white">🎨</div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-monastery mb-2">Temple Mural</h4>
+                        <p class="text-stone-600 text-sm">Ajanta Caves artwork, 2nd century BCE</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-stone-50 to-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-40 bg-gradient-to-br from-warmRed to-monastery flex items-center justify-center">
+                        <div class="text-4xl text-white">🏺</div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-monastery mb-2">Sacred Artifact</h4>
+                        <p class="text-stone-600 text-sm">Ritual vessel, Ming Dynasty</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-stone-50 to-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-40 bg-gradient-to-br from-golden to-saffron flex items-center justify-center">
+                        <div class="text-4xl text-white">📿</div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-monastery mb-2">Prayer Beads</h4>
+                        <p class="text-stone-600 text-sm">Bodhi seed mala, 18th century</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-monastery hover:bg-stone-800 text-white px-8 py-4 rounded-full font-semibold transition-colors">
+                    Browse Full Archive
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tourist Support -->
+    <section id="support" class="py-20 bg-gradient-to-br from-monastery to-warmRed text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Plan Your Journey</h2>
+                <p class="text-xl text-stone-200">Complete support for your spiritual pilgrimage</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 text-center card-hover">
+                    <div class="text-5xl mb-4">🧭</div>
+                    <h3 class="text-2xl font-bold mb-4">Guided Tours</h3>
+                    <p class="text-stone-200 mb-6">Expert local guides with deep knowledge of monastic traditions and history</p>
+                    <button class="bg-saffron hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition-colors">
+                        Book Guide
+                    </button>
+                </div>
+                
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 text-center card-hover">
+                    <div class="text-5xl mb-4">🚗</div>
+                    <h3 class="text-2xl font-bold mb-4">Transportation</h3>
+                    <p class="text-stone-200 mb-6">Comfortable and eco-friendly transport options to remote monastery locations</p>
+                    <button class="bg-golden hover:bg-yellow-500 text-monastery px-6 py-3 rounded-full font-semibold transition-colors">
+                        Book Transport
+                    </button>
+                </div>
+                
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 text-center card-hover">
+                    <div class="text-5xl mb-4">🏠</div>
+                    <h3 class="text-2xl font-bold mb-4">Accommodation</h3>
+                    <p class="text-stone-200 mb-6">Stay in monastery guesthouses or nearby eco-friendly lodges</p>
+                    <button class="bg-saffron hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition-colors">
+                        Find Lodging
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Contribution -->
+    <section class="py-20 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-monastery mb-6">Contribute to Preservation</h2>
+                <p class="text-xl text-stone-600">Help us digitize and preserve cultural heritage</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-monastery mb-4">Share Your Knowledge</h3>
+                        <p class="text-stone-600 mb-6">Upload photos, documents, or stories from your monastery visits to help build our comprehensive digital archive.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-saffron rounded-full flex items-center justify-center text-white text-sm">✓</div>
+                                <span class="text-stone-700">High-resolution photos accepted</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-saffron rounded-full flex items-center justify-center text-white text-sm">✓</div>
+                                <span class="text-stone-700">Historical documents welcome</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-saffron rounded-full flex items-center justify-center text-white text-sm">✓</div>
+                                <span class="text-stone-700">Personal stories valued</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="border-2 border-dashed border-monastery rounded-2xl p-12 mb-6">
+                            <div class="text-6xl text-monastery mb-4">📤</div>
+                            <p class="text-monastery font-semibold mb-2">Upload Files</p>
+                            <p class="text-stone-600 text-sm">Drag & drop or click to select</p>
+                        </div>
+                        <button class="bg-monastery hover:bg-stone-800 text-white px-8 py-3 rounded-full font-semibold transition-colors">
+                            Start Contributing
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation & Eco-tourism -->
+    <section class="py-20 bg-gradient-to-r from-golden to-saffron">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Support Monastery Preservation</h2>
+                <p class="text-xl mb-12 max-w-3xl mx-auto">Your contribution helps maintain these sacred spaces and supports sustainable eco-tourism initiatives</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-8">
+                        <div class="text-4xl mb-4">🏛️</div>
+                        <h3 class="text-2xl font-bold mb-4">Preservation Fund</h3>
+                        <p class="mb-6">Support restoration and maintenance of ancient monasteries and their precious artifacts</p>
+                        <button class="bg-white text-monastery hover:bg-stone-100 px-6 py-3 rounded-full font-semibold transition-colors">
+                            Donate Now
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-8">
+                        <div class="text-4xl mb-4">🌱</div>
+                        <h3 class="text-2xl font-bold mb-4">Eco-Tourism</h3>
+                        <p class="mb-6">Promote sustainable tourism that benefits local communities while preserving cultural heritage</p>
+                        <button class="bg-white text-monastery hover:bg-stone-100 px-6 py-3 rounded-full font-semibold transition-colors">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6">
+                    <div class="grid md:grid-cols-4 gap-6 text-center">
+                        <div>
+                            <div class="text-3xl font-bold">$2.5M</div>
+                            <div class="text-sm opacity-90">Raised for preservation</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold">150+</div>
+                            <div class="text-sm opacity-90">Monasteries supported</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold">50K+</div>
+                            <div class="text-sm opacity-90">Eco-tourists reached</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold">25</div>
+                            <div class="text-sm opacity-90">Countries involved</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="monastery-gradient text-white py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-golden/20 to-transparent"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold mb-4 gradient-text floating">🏛️ Monastery 360</div>
+                    <p class="text-stone-300 mb-4">Preserving spiritual heritage through immersive technology and sustainable tourism.</p>
+                    <div class="flex space-x-4">
+                        <div class="w-8 h-8 bg-saffron rounded-full flex items-center justify-center cursor-pointer">f</div>
+                        <div class="w-8 h-8 bg-saffron rounded-full flex items-center justify-center cursor-pointer">t</div>
+                        <div class="w-8 h-8 bg-saffron rounded-full flex items-center justify-center cursor-pointer">i</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-golden">Explore</h4>
+                    <ul class="space-y-2 text-stone-300">
+                        <li><a href="#tours" class="hover:text-saffron transition-colors">Virtual Tours</a></li>
+                        <li><a href="#archives" class="hover:text-saffron transition-colors">Digital Archives</a></li>
+                        <li><a href="#events" class="hover:text-saffron transition-colors">Events Calendar</a></li>
+                        <li><a href="#" class="hover:text-saffron transition-colors">Interactive Map</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-golden">Support</h4>
+                    <ul class="space-y-2 text-stone-300">
+                        <li><a href="#support" class="hover:text-saffron transition-colors">Plan Your Visit</a></li>
+                        <li><a href="#" class="hover:text-saffron transition-colors">Contribute Content</a></li>
+                        <li><a href="#" class="hover:text-saffron transition-colors">Donate</a></li>
+                        <li><a href="#" class="hover:text-saffron transition-colors">Volunteer</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-golden">Connect</h4>
+                    <ul class="space-y-2 text-stone-300">
+                        <li><a href="#" class="hover:text-saffron transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-saffron transition-colors">Newsletter</a></li>
+                        <li><a href="#" class="hover:text-saffron transition-colors">Community Forum</a></li>
+                        <li><a href="#" class="hover:text-saffron transition-colors">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-stone-700 mt-12 pt-8 text-center text-stone-400">
+                <p>&copy; 2025 Monastery 360. Preserving heritage, inspiring journeys.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sikkim Monastery data
+        const monasteries = {
+            rumtek: {
+                name: "Rumtek Monastery",
+                location: "Gangtok, Sikkim",
+                description: "The largest monastery in Sikkim and seat of the Karmapa. This Kagyu monastery is known for its golden stupa and houses precious relics, including the Black Crown of the Karmapa.",
+                icon: "🏛️",
+                founded: "Founded: 1966 (Original: 1740)"
+            },
+            pemayangtse: {
+                name: "Pemayangtse Monastery",
+                location: "Pelling, West Sikkim",
+                description: "One of the oldest and most important monasteries in Sikkim, meaning 'Perfect Sublime Lotus'. This Nyingma monastery offers stunning views of Kanchenjunga and houses ancient Buddhist artifacts.",
+                icon: "🌸",
+                founded: "Founded: 1705"
+            },
+            tashiding: {
+                name: "Tashiding Monastery",
+                location: "Tashiding, West Sikkim",
+                description: "Built on a heart-shaped hill between two rivers, this sacred Nyingma monastery is believed to cleanse sins of those who visit. Famous for its annual Bumchu festival and holy water ceremony.",
+                icon: "💧",
+                founded: "Founded: 1717"
+            },
+            enchey: {
+                name: "Enchey Monastery",
+                location: "Gangtok, Sikkim",
+                description: "Located on a hilltop in Gangtok, this Nyingma monastery is known for its annual Cham dance during the Enchey festival. The monastery houses beautiful murals and statues.",
+                icon: "🎭",
+                founded: "Founded: 1909"
+            },
+            dubdi: {
+                name: "Dubdi Monastery",
+                location: "Yuksom, West Sikkim",
+                description: "The oldest monastery in Sikkim, also known as Hermit's Cell. Built by Lhatsun Chenpo, one of the three lamas who crowned the first Chogyal of Sikkim. A place of deep historical significance.",
+                icon: "🏔️",
+                founded: "Founded: 1701"
+            },
+            phensang: {
+                name: "Phensang Monastery",
+                location: "Kabi, North Sikkim",
+                description: "A beautiful Nyingma monastery located near the historic Kabi Lungchok where the blood brotherhood between Lepcha and Bhutia communities was established. Known for its peaceful ambiance.",
+                icon: "🤝",
+                founded: "Founded: 1721"
+            }
+        };
+
+        // Hotspot information
+        const hotspotInfo = {
+            altar: {
+                title: "Sacred Altar",
+                description: "The main altar where daily prayers and ceremonies take place. Adorned with traditional offerings and sacred symbols representing the Buddhist path to enlightenment."
+            },
+            statue: {
+                title: "Buddha Statue",
+                description: "A magnificent statue of Buddha in meditation pose, carved from local stone. This statue has been a focal point for meditation and prayer for centuries."
+            },
+            murals: {
+                title: "Ancient Murals",
+                description: "These wall paintings depict stories from Buddhist scriptures and the life of Buddha. Created by master artists using traditional pigments and techniques."
+            }
+        };
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Monastery map interactions
+        function showMonasteryDetails(monasteryId) {
+            const monastery = monasteries[monasteryId];
+            if (!monastery) return;
+
+            document.getElementById('monasteryName').textContent = monastery.name;
+            document.getElementById('monasteryLocation').textContent = monastery.location;
+            document.getElementById('monasteryDescription').textContent = monastery.description;
+            document.getElementById('monasteryIcon').textContent = monastery.icon;
+            document.getElementById('monasteryFounded').textContent = monastery.founded;
+            
+            document.getElementById('monasteryDetails').classList.remove('hidden');
+        }
+
+        // Virtual tour functionality
+        function launchTour() {
+            document.getElementById('tourLaunchScreen').classList.add('hidden');
+            document.getElementById('activeTour').classList.remove('hidden');
+        }
+
+        function exitTour() {
+            document.getElementById('tourLaunchScreen').classList.remove('hidden');
+            document.getElementById('activeTour').classList.add('hidden');
+            closeHotspotInfo();
+        }
+
+        function startVirtualTour() {
+            scrollToSection('tours');
+            setTimeout(() => {
+                launchTour();
+            }, 1000);
+        }
+
+        function showHotspotInfo(hotspotType) {
+            const info = hotspotInfo[hotspotType];
+            if (!info) return;
+
+            document.getElementById('hotspotTitle').textContent = info.title;
+            document.getElementById('hotspotDescription').textContent = info.description;
+            document.getElementById('hotspotInfo').classList.remove('hidden');
+        }
+
+        function closeHotspotInfo() {
+            document.getElementById('hotspotInfo').classList.add('hidden');
+        }
+
+        // Initialize interactions when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Monastery marker interactions
+            document.querySelectorAll('.monastery-marker').forEach(marker => {
+                marker.addEventListener('click', function() {
+                    const monasteryId = this.getAttribute('data-monastery');
+                    showMonasteryDetails(monasteryId);
+                });
+            });
+
+            // Hotspot interactions
+            document.querySelectorAll('.hotspot').forEach(hotspot => {
+                hotspot.addEventListener('click', function() {
+                    const infoType = this.getAttribute('data-info');
+                    showHotspotInfo(infoType);
+                });
+            });
+
+            // Add smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Language selector functionality
+            document.querySelector('select').addEventListener('change', function(e) {
+                const selectedLang = e.target.value;
+                console.log('Language changed to:', selectedLang);
+                // Show language change notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-20 right-4 bg-saffron text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                notification.textContent = `Language changed to ${selectedLang.split(' ')[1]}`;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            });
+
+            // Calendar interaction
+            document.querySelectorAll('.grid-cols-7 > div').forEach(day => {
+                if (day.classList.contains('bg-saffron') || day.classList.contains('bg-golden')) {
+                    day.addEventListener('click', function() {
+                        const eventName = day.classList.contains('bg-saffron') ? 'Losar Festival' : 'Vesak Day Meditation';
+                        alert(`${eventName} - Click to join virtual event or set reminder!`);
+                    });
+                }
+            });
+
+            // Archive item interactions
+            document.querySelectorAll('#archives .card-hover').forEach(card => {
+                card.addEventListener('click', function() {
+                    const title = card.querySelector('h4').textContent;
+                    alert(`Opening high-resolution view of: ${title}`);
+                });
+            });
+
+            // Booking and action button interactions
+            document.querySelectorAll('button').forEach(button => {
+                const text = button.textContent.trim();
+                if (text.includes('Book') || text.includes('Donate') || text.includes('Upload') || text.includes('Start Contributing')) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert(`${text} - This would open the booking/action interface in the full application!`);
+                    });
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98482a8c21219a9b',t:'MTc1ODc3ODYxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
